@@ -1,0 +1,6 @@
+@import '../variables';
+@import '../mixins';
+
+button {
+  @include button;
+}

@@ -1,0 +1,36 @@
+@import 'variables';
+
+@mixin button {
+  background-color: var(--color-white, $color-white);
+  border-radius: 0.5rem;
+  border: 0;
+  color: var(--color-text-muted, $color-text-muted);
+  cursor: pointer;
+  font-family: $font-family-sans;
+  font-size: 1.2rem;
+  font-weight: 700;
+  outline: none;
+  padding: 0.8rem 2rem;
+  transform: translateY(0);
+  transition-duration: $transition-speed;
+  transition-timing-function: ease-in-out;
+  transition-property: color, background-color, transform;
+
+  &:hover {
+    transform: translateY(-1px);
+    background-color: var(--color-primary-light, $color-primary-light);
+    color: var(--color-black, $color-black);
+  }
+
+  &:active {
+    transform: translateY(0);
+  }
+
+  &.primary {
+    background-color: var(--color-primary, $color-primary);
+  }
+
+  &.secondary {
+    background-color: var(--color-secondary, $color-secondary);
+  }
+}

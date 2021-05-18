@@ -1,0 +1,32 @@
+// https://material.io/resources/color/#!/?view.left=1&view.right=0&secondary.color=00FF76&primary.color=00a3ff
+
+$color-primary: #00a3ff;
+$color-primary-light: #69d4ff;
+$color-primary-dark: #0075cb;
+$color-secondary: #00ff76;
+$color-secondary-light: #6dffa7;
+$color-secondary-dark: #00ca46;
+$color-text: rgba(0, 0, 0, 0.95);
+$color-text-muted: rgba(0, 0, 0, 0.66);
+$color-text-inverse: rgba(255, 255, 255, 0.96);
+$color-text-inverse-muted: rgba(255, 255, 255, 0.68);
+$color-white: #fff;
+$color-black: #000;
+
+$font-size-base: 10px;
+
+$transition-speed: 125ms;
+
+$font-family-sans: -apple-system,
+  // Chrome < 56 for OS X (San Francisco)
+  BlinkMacSystemFont,
+  // Windows
+  'Segoe UI',
+  // Android
+  'Roboto',
+  // Basic web fallback
+  'Helvetica Neue',
+  Arial, sans-serif,
+  // Emoji fonts
+  'Apple Color Emoji',
+  'Segoe UI Emoji', 'Segoe UI Symbol' !default;

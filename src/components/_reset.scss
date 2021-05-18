@@ -1,0 +1,24 @@
+@import 'variables';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+iframe {
+  border: 0;
+}
+
+:root {
+  font-size: $font-size-base;
+  font-family: $font-family-sans;
+}
+
+body {
+  margin: 0;
+}
+
+[hidden] {
+  display: none !important;
+}
