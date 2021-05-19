@@ -18,7 +18,7 @@
 
   &:hover {
     transform: translateY(-1px);
-    background-color: var(--color-primary-light, $color-primary-light);
+    background-color: var(--color-primary, $color-primary);
     color: var(--color-black, $color-black);
   }
 
@@ -32,5 +32,15 @@
 
   &.secondary {
     background-color: var(--color-secondary, $color-secondary);
+  }
+}
+
+@mixin heading($color) {
+  color: var(--color-text-muted, $color);
+  font-weight: 600;
+  margin: 0 0 0.5em;
+
+  p + & {
+    margin-top: 2rem;
   }
 }
