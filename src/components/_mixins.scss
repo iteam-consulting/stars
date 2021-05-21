@@ -22,7 +22,10 @@
     color: var(--color-black, $color-black);
   }
 
-  &:active {
+  &:active,
+  &:focus {
+    color: var(--color-black, $color-black);
+    background-color: var(--color-primary, $color-primary);
     transform: translateY(0);
   }
 
@@ -43,4 +46,65 @@
   p + & {
     margin-top: 2rem;
   }
+}
+
+@mixin svg-color($color) {
+  svg {
+    [fill]:not(.permanent):not(g) {
+      transition: fill 0.3s ease;
+      fill: $color;
+    }
+
+    &:hover {
+      [fill]:not(.permanent):not(g) {
+        transition: fill 0.3s ease;
+      }
+    }
+  }
+}
+
+// https://material.io/design/environment/elevation.html#default-elevations
+@mixin elevation-1 {
+  box-shadow: 0 1px 3px 0 $shadow-umbra, 0 1px 1px 0 $shadow-penumbra,
+    0 2px 1px -1px $shadow-antumbra;
+}
+
+@mixin elevation-2 {
+  box-shadow: 0 1px 5px 0 $shadow-umbra, 0 2px 2px 0 $shadow-penumbra,
+    0 3px 1px -2px $shadow-antumbra;
+}
+
+@mixin elevation-3 {
+  box-shadow: 0 1px 8px 0 $shadow-umbra, 0 3px 4px 0 $shadow-penumbra,
+    0 3px 3px -2px $shadow-antumbra;
+}
+
+@mixin elevation-4 {
+  box-shadow: 0 2px 4px -1px $shadow-umbra, 0 4px 5px 0 $shadow-penumbra,
+    0 1px 10px 0 $shadow-antumbra;
+}
+
+@mixin elevation-6 {
+  box-shadow: 0 3px 5px -1px $shadow-umbra, 0 6px 10px 0 $shadow-penumbra,
+    0 1px 18px 0 $shadow-antumbra;
+}
+
+@mixin elevation-8 {
+  box-shadow: 0 5px 5px -3px $shadow-umbra, 0 8px 10px 1px $shadow-penumbra,
+    0 3px 14px 2px $shadow-antumbra;
+}
+
+@mixin elevation-12 {
+  box-shadow: 0 7px 8px -4px $shadow-umbra, 0 12px 17px 2px $shadow-penumbra,
+    0 5px 22px 4px $shadow-antumbra;
+}
+
+@mixin elevation-16 {
+  box-shadow: 0 8px 10px -5px $shadow-umbra, 0 16px 24px 2px $shadow-penumbra,
+    0 6px 30px 5px $shadow-antumbra;
+}
+
+@mixin elevation-24 {
+  box-shadow: 0 11px 15px -7px $shadow-umbra, 0 24px 38px 3px $shadow-penumbra,
+    0 9px 46px 8px $shadow-antumbra;
 }

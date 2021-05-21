@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { HTMLAttributes, ReactNode } from 'react';
+import { forwardRef, HTMLAttributes, ReactNode } from 'react';
 import './Button.scss';
 
 export type ButtonProps = {
@@ -10,13 +10,17 @@ export type ButtonProps = {
   variant?: 'primary' | 'secondary';
 } & HTMLAttributes<HTMLButtonElement>;
 
-function Button({ variant, className, ...props }: ButtonProps) {
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
+  props,
+  ref
+) {
+  const { variant, className, ...rest } = props;
   const classes = classNames(className, {
     primary: variant === 'primary',
     secondary: variant === 'secondary',
   });
 
-  return <button className={classes} {...props} />;
-}
+  return <button ref={ref} className={classes} {...rest} />;
+});
 
 export default Button;

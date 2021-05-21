@@ -1,0 +1,29 @@
+@import '../variables';
+@import '../mixins';
+
+.svg-icon {
+  $sizes: (
+    'sm': 20px,
+    'md': 24px,
+    'lg': 30px,
+    'xl': 36px,
+    'x2': 48px,
+    'x3': 72px,
+  );
+
+  line-height: 1;
+
+  svg {
+    height: map-get($map: $sizes, $key: 'md');
+    width: map-get($map: $sizes, $key: 'md');
+  }
+
+  @each $key, $size in $sizes {
+    &.#{$key} svg {
+      height: $size;
+      width: $size;
+    }
+  }
+
+  @include svg-color($color-text-muted);
+}

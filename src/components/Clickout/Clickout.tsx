@@ -1,12 +1,12 @@
-import { ReactNode, useEffect, useRef } from 'react';
+import { HTMLAttributes, ReactNode, useEffect, useRef } from 'react';
 
 export type ClickoutProps = {
   onClickout: () => void;
   detect?: boolean;
   children?: ReactNode;
-};
+} & HTMLAttributes<HTMLDivElement>;
 
-function Clickout({ onClickout, detect, children }: ClickoutProps) {
+function Clickout({ onClickout, detect, children, ...props }: ClickoutProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
@@ -42,7 +42,11 @@ function Clickout({ onClickout, detect, children }: ClickoutProps) {
     }
   }, [onClickout, detect]);
 
-  return <div ref={ref}>{children}</div>;
+  return (
+    <div {...props} ref={ref}>
+      {children}
+    </div>
+  );
 }
 
 export default Clickout;

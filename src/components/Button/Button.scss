@@ -3,4 +3,10 @@
 
 button {
   @include button;
+
+  .dropdown.show > &.activator {
+    color: var(--color-black, $color-black);
+    background-color: var(--color-primary, $color-primary);
+    transform: translateY(0);
+  }
 }

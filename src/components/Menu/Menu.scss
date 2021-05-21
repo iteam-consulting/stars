@@ -1,0 +1,21 @@
+@import '../mixins';
+
+.menu {
+  @include elevation-8;
+  border-radius: 0.5rem;
+  opacity: 0;
+  transform: translateY(10px);
+  transition-property: opacity, transform, box-shadow;
+  transition-duration: $transition-speed;
+  transition-timing-function: ease-in-out;
+
+  &.appear-done,
+  &.enter-done {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  &.exit-done {
+    display: none;
+  }
+}

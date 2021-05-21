@@ -7,12 +7,12 @@ h1 {
 }
 
 h2 {
-  @include heading($color: $color-text-muted);
+  @include heading($color: $color-text);
   font-size: 3rem;
 }
 
 h3 {
-  @include heading($color: $color-text-muted);
+  @include heading($color: $color-text);
   font-size: 2rem;
 }
 
