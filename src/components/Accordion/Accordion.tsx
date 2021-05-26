@@ -67,7 +67,7 @@ function Accordion({ children, className, id, ...props }: AccordionProps) {
             {
               ref: contentRef,
               style: { maxHeight: show ? maxHeight : 0 },
-              className: 'content',
+              className: classNames('content', content.props.className),
             },
             content.props.children
           )

@@ -1,0 +1,52 @@
+@import '../variables';
+
+.nav-item-list {
+  color: var(--color-text-muted, $color-text-muted);
+
+  .arrow-icon svg path {
+    transition: none !important;
+  }
+
+  &.active {
+    color: var(--color-primary, $color-primary);
+
+    .arrow-icon svg path {
+      fill: var(--color-primary, $color-primary) !important;
+    }
+  }
+
+  &--title {
+    align-items: center;
+    cursor: pointer;
+    display: flex;
+    font-size: 1.5rem;
+    padding: 0.5rem 0 0 1rem;
+    margin-bottom: 0.5rem;
+
+    .arrow-icon {
+      margin-left: auto;
+    }
+
+    &:hover {
+      color: var(--color-primary, $color-primary);
+
+      .arrow-icon svg path {
+        fill: var(--color-primary, $color-primary) !important;
+      }
+    }
+  }
+
+  &--items {
+    padding-left: 1rem;
+    list-style: inside;
+  }
+
+  .arrow-icon svg {
+    transform: rotateZ(0);
+    transition: transform ease-in-out $transition-speed;
+  }
+
+  &.show .arrow-icon svg {
+    transform: rotateZ(90deg);
+  }
+}

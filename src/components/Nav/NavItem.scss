@@ -1,0 +1,42 @@
+@import '../variables';
+
+.nav-item {
+  border-radius: 0.4rem;
+  font-size: 1.5rem;
+  padding-left: 1rem;
+
+  &.active {
+    background-color: var(--color-primary-300, $color-primary-300);
+  }
+
+  .nav-item-list & {
+    display: list-item;
+
+    &::marker {
+      margin-left: 0.5rem;
+      color: var(--color-text-muted, $color-text-muted);
+    }
+
+    &:hover::marker,
+    &.active::marker {
+      color: var(--color-primary, $color-primary);
+    }
+
+    a {
+      width: calc(100% - 22px);
+    }
+  }
+
+  & a {
+    color: var(--color-text-muted, $color-text-muted);
+    display: inline-block;
+    padding: 0.7rem 0;
+    text-decoration: none;
+    width: 100%;
+  }
+
+  &:hover a,
+  &.active a {
+    color: var(--color-primary, $color-primary);
+  }
+}

@@ -1,4 +1,7 @@
+@import '../variables';
+
 nav {
   display: flex;
   flex-direction: column;
+  width: var(--nav-width, $nav-width);
 }

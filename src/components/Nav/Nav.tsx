@@ -2,6 +2,7 @@ import { History } from 'history';
 import React, { HTMLAttributes, ReactNode, useState } from 'react';
 import AccordionProvider from '../Accordion/AccordionProvider';
 import { NavContext, NavContextRecordType } from './Nav.context';
+import './Nav.scss';
 
 export type NavProps = {
   history: History;

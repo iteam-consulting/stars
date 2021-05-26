@@ -6,8 +6,11 @@ import React, {
   useContext,
 } from 'react';
 import Accordion from '../Accordion/Accordion';
-import AccordionContext from '../Accordion/Accordion.context';
 import { NavContext } from './Nav.context';
+import { ReactComponent as AngleIcon } from './AngleRight.svg';
+import './NavItemList.scss';
+import SVGIcon from '../SVGIcon/SVGIcon';
+import AccordionProvider from '../Accordion/AccordionProvider';
 
 export type NavItemListProps = {
   icon?: ComponentType<SVGProps<SVGElement>>;
@@ -24,7 +27,6 @@ function NavItemList({
   ...props
 }: NavItemListProps) {
   const state = useContext(NavContext);
-  const accordion = useContext(AccordionContext);
 
   const classes = classNames('nav-item-list', className, {
     active: state.pathname.startsWith(path),
@@ -32,8 +34,15 @@ function NavItemList({
 
   return (
     <Accordion {...props} id={path} className={classes}>
-      <div>{title}</div>
-      <div>{children}</div>
+      <div className="nav-item-list--title">
+        <span>{title}</span>
+        <SVGIcon className="arrow-icon" variant="xs">
+          <AngleIcon />
+        </SVGIcon>
+      </div>
+      <div className="nav-item-list--items">
+        <AccordionProvider>{children}</AccordionProvider>
+      </div>
     </Accordion>
   );
 }

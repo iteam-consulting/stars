@@ -1,6 +1,7 @@
 import classNames from 'classnames';
 import { HTMLAttributes, ReactElement, useContext } from 'react';
 import { NavContext } from './Nav.context';
+import './NavItem.scss';
 
 type LinkishProps = {
   to: string;
