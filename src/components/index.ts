@@ -1,3 +1,10 @@
+export {
+  default as AccordionContext,
+  AccordionStateRecord,
+} from './Accordion/Accordion.context';
+
+export { default as AccordionProvider } from './Accordion/AccordionProvider';
+export { default as Accordion } from './Accordion/Accordion';
 export { default as Button } from './Button/Button';
 export { default as Clickout } from './Popover/Popover';
 export { default as Main } from './Main/Main';

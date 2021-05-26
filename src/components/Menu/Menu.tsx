@@ -1,5 +1,5 @@
 import classNames from 'classnames';
-import { HTMLAttributes, ReactNode, useRef } from 'react';
+import { forwardRef, HTMLAttributes, ReactNode, useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 import { CSSTransitionProps } from 'react-transition-group/CSSTransition';
 import './Menu.scss';
@@ -13,11 +13,14 @@ export type MenuProps = {
   title: string;
 } & Omit<HTMLAttributes<HTMLDivElement>, MenuOmitType>;
 
-function Menu({ name, children, show, ...props }: MenuProps) {
+const Menu = forwardRef<HTMLDivElement, MenuProps>(function Menu(
+  { name, children, show, ...props },
+  _ref
+) {
   const classes = classNames(name, 'menu');
   const ref = useRef<HTMLDivElement>(null);
   const transition: CSSTransitionProps<HTMLDivElement> = {
-    nodeRef: ref,
+    nodeRef: _ref || ref,
     in: show,
     appear: true,
     timeout: 125,
@@ -25,11 +28,11 @@ function Menu({ name, children, show, ...props }: MenuProps) {
 
   return (
     <CSSTransition {...transition}>
-      <div ref={ref} className={classes} {...props}>
+      <div ref={_ref || ref} className={classes} {...props}>
         {children}
       </div>
     </CSSTransition>
   );
-}
+});
 
 export default Menu;
