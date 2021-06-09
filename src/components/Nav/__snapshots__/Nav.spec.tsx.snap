@@ -1,0 +1,51 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Nav Nav renders a complex tree properly 1`] = `
+<nav>
+  <div
+    class="nav-item"
+  >
+    <a
+      href="/test/link1"
+    >
+      Link 1
+    </a>
+  </div>
+  <div
+    class="accordion nav-item-list"
+    title="Test"
+  >
+    <div
+      class="nav-item-list--title"
+      id="/test"
+    >
+      <span>
+        Test
+      </span>
+      <span
+        class="arrow-icon xs svg-icon"
+      >
+        <svg>
+          AngleRight.svg
+        </svg>
+      </span>
+    </div>
+    <div
+      class="content nav-item-list--items"
+      style="max-height: 0;"
+    >
+      <div
+        class="nav-item"
+      >
+        <a
+          href="/test/hello"
+        >
+          Hello
+        </a>
+      </div>
+    </div>
+  </div>
+</nav>
+`;
+
+exports[`Nav Nav renders properly 1`] = `<nav />`;

@@ -1,38 +1,3 @@
-/**
- * Proposed markup:
- * The Link component used should be Link from some client side router package like react-*, reach-* or next.
- * <Nav>
- *  <NavItem>
- *    <Link to="...">Item 1</Link>
- *  </NavItem>
- *  <NavItem>
- *    <Link to="...">Item 2</Link>
- *  </NavItem>
- *  <NavItem>
- *    <Link to="...">Item 3</Link>
- *  </NavItem>
- *  <NavItemList title="List" [icon={...} | path="..."]>
- *    <NavItem>
- *      <Link to="...">Item 1</Link>
- *    </NavItem>
- *    <NavItem>
- *      <Link to="...">Item 2</Link>
- *    </NavItem>
- *    <NavItem>
- *      <Link to="...">Item 3</Link>
- *    </NavItem>
- *  </NavItemList>
- * </Nav>
- *
- * The nav component should implement/use a nav context to keep track of which sublist may be active.
- * Similarly, the NavItemList should implement/use the same nav context and keep track of its own inner
- * lists.
- *
- * The entire nav tree also needs to know where the application is currently located. NavItemLists should
- * expand on mount when the location includes the path provided to the list. NavItems should mount in an
- * :active state if the current location matches where the item points.
- */
-
 import { Meta, Story } from '@storybook/react';
 import Nav, { NavProps } from './Nav';
 import { Link, Route, Router, Switch } from 'react-router-dom';

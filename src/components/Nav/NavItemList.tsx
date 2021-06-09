@@ -16,7 +16,7 @@ export type NavItemListProps = {
   icon?: ComponentType<SVGProps<SVGElement>>;
   path: string;
   title: string;
-  children?: React.ReactNodeArray;
+  children?: React.ReactNodeArray | React.ReactNode;
 } & HTMLAttributes<HTMLDivElement>;
 
 function NavItemList({
@@ -33,7 +33,7 @@ function NavItemList({
   });
 
   return (
-    <Accordion {...props} id={path} className={classes}>
+    <Accordion {...props} id={path} className={classes} title={title}>
       <div className="nav-item-list--title">
         <span>{title}</span>
         <SVGIcon className="arrow-icon" variant="xs">
