@@ -73,15 +73,10 @@
 .center {
   &.flex {
     align-self: center;
-
-    :not(.flex) > & {
-      margin: 0 auto;
-    }
   }
 
-  &:not(.flex):not(.pinned) {
-    left: 50%;
-    transform: translateX(-50%);
+  &:not(.flex) {
+    margin: 0 auto;
   }
 }
 
