@@ -72,10 +72,14 @@
 
 .center {
   &.flex {
-    margin: 0 auto;
+    align-self: center;
+
+    :not(.flex) > & {
+      margin: 0 auto;
+    }
   }
 
-  &:not(.flex) {
+  &:not(.flex):not(.pinned) {
     left: 50%;
     transform: translateX(-50%);
   }
@@ -84,6 +88,10 @@
 .start {
   &.flex {
     align-self: flex-start;
+
+    :not(.flex) > & {
+      margin-right: auto;
+    }
   }
 
   &:not(.flex) {
@@ -94,6 +102,10 @@
 .end {
   &.flex {
     align-self: flex-end;
+
+    :not(.flex) > & {
+      margin-left: auto;
+    }
   }
 
   &:not(.flex) {

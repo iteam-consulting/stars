@@ -6,7 +6,11 @@ export default {
   component: Layout,
 } as Meta;
 
-const Template: Story<LayoutProps> = args => <Layout {...args} />;
+const Template: Story<LayoutProps> = args => (
+  <Layout mode="flex" orientation="y">
+    <Layout {...args} />
+  </Layout>
+);
 
 export const Default = Template.bind({});
 Default.args = {
