@@ -40,3 +40,11 @@ $font-family-sans: -apple-system,
   // Emoji fonts
   'Apple Color Emoji',
   'Segoe UI Emoji', 'Segoe UI Symbol' !default;
+
+$spacing: (
+  'xs': 0.2rem,
+  'sm': 0.4rem,
+  'md': 0.6rem,
+  'lg': 0.8rem,
+  'xl': 1rem,
+);

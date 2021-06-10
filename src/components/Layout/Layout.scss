@@ -1,0 +1,109 @@
+@import '../variables';
+
+.flex {
+  display: flex;
+
+  &.x {
+    flex-direction: row;
+  }
+
+  &.y {
+    flex-direction: column;
+  }
+
+  &.-x {
+    flex-direction: row-reverse;
+  }
+
+  &.-y {
+    flex-direction: column-reverse;
+  }
+}
+
+.sticky {
+  position: sticky;
+  top: 0;
+}
+
+.fixed {
+  position: fixed;
+}
+
+.absolute {
+  position: absolute;
+}
+
+.pinned {
+  &:not(.center):not(.start):not(.end) {
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  &.center {
+    top: 0;
+    bottom: 0;
+  }
+
+  &.start {
+    top: 0;
+    bottom: 0;
+    left: 0;
+  }
+
+  &.end {
+    top: 0;
+    right: 0;
+    bottom: 0;
+  }
+}
+
+.fill {
+  &.flex {
+    flex: 1;
+  }
+
+  &:not(.flex) {
+    height: 100%;
+    width: 100%;
+  }
+}
+
+.center {
+  &.flex {
+    margin: 0 auto;
+  }
+
+  &:not(.flex) {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.start {
+  &.flex {
+    align-self: flex-start;
+  }
+
+  &:not(.flex) {
+    left: 0;
+  }
+}
+
+.end {
+  &.flex {
+    align-self: flex-end;
+  }
+
+  &:not(.flex) {
+    margin-left: auto;
+    right: 0;
+  }
+}
+
+@each $key, $val in $spacing {
+  .spacing-#{$key} {
+    padding: $val;
+  }
+}

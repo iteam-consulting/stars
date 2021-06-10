@@ -2,9 +2,12 @@ import classNames from 'classnames';
 import { CSSProperties, forwardRef, ReactNode } from 'react';
 import { HTMLAttributes } from 'react';
 import { LayoutStrings } from './Layout.strings';
+import './Layout.scss';
 
 type LayoutModes = 'flex' | 'sticky' | 'fixed' | 'absolute';
 type LayoutSpacing = 'xs' | 'sm' | 'md' | 'lg' | 'xl';
+type LayoutOrientation = 'x' | 'y' | '-x' | '-y';
+type LayoutAlignment = 'start' | 'center' | 'end';
 
 export type LayoutProps = {
   children?: ReactNode;
@@ -16,6 +19,8 @@ export type LayoutProps = {
   spacing?: LayoutSpacing;
   fill?: boolean;
   pinned?: boolean;
+  orientation?: LayoutOrientation;
+  alignment?: LayoutAlignment;
 } & HTMLAttributes<HTMLDivElement>;
 
 const Layout = forwardRef<HTMLDivElement, LayoutProps>(function Layout(
@@ -33,11 +38,15 @@ const Layout = forwardRef<HTMLDivElement, LayoutProps>(function Layout(
     bottom,
     left,
     style,
+    orientation,
+    alignment,
     ...rest
   } = props;
   const classes = classNames(className, mode, {
     fill,
     pinned,
+    [`${orientation}`]: orientation,
+    [`${alignment}`]: alignment,
     [`spacing-${spacing}`]: spacing,
   });
 
