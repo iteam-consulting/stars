@@ -1,12 +1,38 @@
 @import '../variables';
 
+.table {
+  overflow-x: auto;
+}
+
 table {
-  border: 0;
+  border-collapse: separate;
+  border-spacing: 0;
+  border-width: 1px;
   font-size: 1.2rem;
 
   td,
   th {
-    padding: 0.5rem 0.5rem;
+    padding: 1rem;
+    border-bottom-width: 1px;
+    border-bottom-color: var(--color-primary-300, $color-primary-300);
+    border-bottom-style: dashed;
+
+    &.clickable {
+      cursor: pointer;
+      user-select: none;
+      transition: color ease-in-out 100ms;
+
+      &:hover {
+        color: var(--color-black, $color-black);
+      }
+    }
+  }
+
+  &.dense {
+    td,
+    th {
+      padding: 0.5rem;
+    }
   }
 
   th {
@@ -14,5 +40,29 @@ table {
     font-size: 1rem;
     text-align: left;
     text-transform: uppercase;
+
+    &.desc::after {
+      margin-left: 1rem;
+      display: inline-block;
+      content: '';
+      height: 8px;
+      width: 9px;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9 8' fill='%23A1A5B7'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M4.42111 5.93537C4.22088 6.03839 3.9637 6.0191 3.78597 5.87137L0.177181 2.87153C-0.046034 2.68598 -0.060261 2.36951 0.145404 2.16468C0.351069 1.95985 0.698744 1.94422 0.921959 2.12977L4.14137 4.80594L7.06417 2.15586C7.27904 1.96104 7.62686 1.96165 7.84105 2.15722C8.05524 2.35279 8.05469 2.66927 7.83982 2.86409L4.54449 5.85194C4.50704 5.8859 4.46541 5.91371 4.42111 5.93537Z'/%3e%3c/svg%3e");
+    }
+
+    &.asc::after {
+      display: inline-block;
+      margin-left: 1rem;
+      content: '';
+      height: 8px;
+      width: 9px;
+      background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 9 8' fill='%23A1A5B7'%3e%3cpath fill-rule='evenodd' clip-rule='evenodd' d='M4.42111 2.06463C4.22088 1.96161 3.9637 1.9809 3.78597 2.12863L0.177181 5.12847C-0.046034 5.31402 -0.0602611 5.63049 0.145404 5.83532C0.351069 6.04015 0.698744 6.05578 0.921959 5.87023L4.14137 3.19406L7.06417 5.84414C7.27904 6.03896 7.62686 6.03835 7.84105 5.84278C8.05524 5.64721 8.05469 5.33073 7.83982 5.13591L4.54449 2.14806C4.50704 2.1141 4.46541 2.08629 4.42111 2.06463Z'/%3e%3c/svg%3e");
+    }
+  }
+
+  tr {
+    &:last-child td {
+      border: none;
+    }
   }
 }

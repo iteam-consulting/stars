@@ -1,4 +1,5 @@
-import { forwardRef, HTMLAttributes } from 'react';
+import classNames from 'classnames';
+import { createElement, forwardRef, HTMLAttributes } from 'react';
 
 export type DataTableCellProps = {
   header?: boolean;
@@ -6,8 +7,22 @@ export type DataTableCellProps = {
 
 const DataTableCell = forwardRef<HTMLTableCellElement, DataTableCellProps>(
   function DataTableCell(props, ref) {
-    const { header, ...rest } = props;
-    return header ? <th {...rest} ref={ref} /> : <td {...rest} ref={ref} />;
+    const { header, onClick, className, ...rest } = props;
+    const classes = classNames(className, {
+      clickable: Boolean(onClick),
+    });
+
+    return createElement(header ? 'th' : 'td', {
+      className: classes,
+      onClick,
+      ref,
+      ...rest,
+    });
+    // return header ? (
+    //   <th {...rest} onClick={onClick} className={classes} ref={ref} />
+    // ) : (
+    //   <td {...rest} onClick={onClick} className={classes} ref={ref} />
+    // );
   }
 );
 

@@ -34,6 +34,7 @@ Default.args = {
     {
       title: 'Character',
       key: 'user',
+      sortable: true,
       render: row => (
         <Layout mode="flex">
           <Avatar src={row.user.img} size="lg" />
@@ -46,6 +47,7 @@ Default.args = {
     {
       title: 'Role',
       key: 'role',
+      sortable: true,
     },
   ],
 };

@@ -37,8 +37,15 @@ function DataTableStateReducer<T = any>(
         });
       }
 
+      mutated.set('all', mutated.selected.equals(state.data));
+      mutated.set(
+        'indeterminate',
+        mutated.selected.count() > 0 && mutated.selected.isSubset(state.data)
+      );
+
       return mutated.asImmutable();
     case 'sort':
+      console.log(action);
       return state.sort?.column === action.column
         ? state.set('sort', { column: action.column, asc: !state.sort.asc })
         : state.set('sort', { column: action.column, asc: true });

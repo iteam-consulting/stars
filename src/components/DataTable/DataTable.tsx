@@ -1,17 +1,26 @@
 import { createElement, forwardRef, HTMLAttributes, useReducer } from 'react';
-import Layout from '../Layout/Layout';
+import { Set } from 'immutable';
+import classNames from 'classnames';
 import DataTableCell from './DataTableCell';
 import DataTableRow from './DataTableRow';
-import DataTableStateRecordType, { select } from './DataTable.State';
-import './DataTable.scss';
-import { Set } from 'immutable';
+import DataTableStateRecordType, {
+  DataTableSortState,
+  select,
+  sort,
+} from './DataTable.State';
 import DataTableStateReducer from './DataTable.Reducer';
 import Checkbox from '../Checkbox/Checkbox';
+import './DataTable.scss';
 
 type DataTableHeader<T = any> = {
   title: string;
   key: keyof T;
   sortable?: boolean;
+  responsive?: {
+    sm?: MediaQueryList;
+    md?: MediaQueryList;
+    lg?: MediaQueryList;
+  };
   render?: React.FunctionComponent<T>;
 };
 
@@ -22,61 +31,85 @@ export type DataTableInnerProps<T = any> = {
   limit?: number;
 };
 
-export type DataTableProps<T = any> = DataTableInnerProps<T> &
+export type DataTableProps<T = any> = {
+  dense?: boolean;
+} & DataTableInnerProps<T> &
   HTMLAttributes<HTMLTableElement>;
+
+function renderable(header: DataTableHeader): boolean {
+  return (
+    !header.responsive ||
+    Boolean(header.responsive.lg?.matches) ||
+    Boolean(header.responsive.md?.matches) ||
+    Boolean(header.responsive.sm?.matches)
+  );
+}
+
+function sorted(header: DataTableHeader, sort?: DataTableSortState) {
+  console.log(sort);
+  return {
+    asc: header.sortable && sort?.column === header.key && sort.asc,
+    desc: header.sortable && sort?.column === header.key && !sort.asc,
+  };
+}
 
 const DataTable = forwardRef<HTMLTableElement, DataTableProps>(
   function DataTable(props, ref) {
+    const { data, headers, offset, limit, dense, className, ...rest } = props;
     const [state, dispatch] = useReducer(
       DataTableStateReducer,
-      DataTableStateRecordType()
+      DataTableStateRecordType({ data: Set(data) })
     );
-    const { data, headers, offset, limit, ...rest } = props;
-    const set = Set(data);
+    const classes = classNames({ dense });
 
     return (
-      <table {...rest} ref={ref}>
-        <thead>
-          <DataTableRow>
-            <DataTableCell header>
-              <Checkbox
-                checked={state.selected.equals(set)}
-                onClick={() => dispatch(select(data))}
-              />
-            </DataTableCell>
-            {headers.map(header => (
-              <DataTableCell header key={header.key as string}>
-                <Layout mode="flex">
-                  <Layout fill>{header.title}</Layout>
-                  <Layout mode="flex" alignment="center" orientation="y">
-                    {header.sortable && <span>Icon</span>}
-                  </Layout>
-                </Layout>
-              </DataTableCell>
-            ))}
-          </DataTableRow>
-        </thead>
-        <tbody>
-          {data.slice(offset, limit).map(row => (
+      <div className="table">
+        <table {...rest} className={classes} ref={ref}>
+          <thead>
             <DataTableRow>
-              <DataTableCell>
+              <DataTableCell header>
                 <Checkbox
-                  checked={state.selected.includes(row)}
-                  onClick={() => dispatch(select([row]))}
+                  key="__selector"
+                  indeterminate={state.indeterminate}
+                  checked={state.all}
+                  onChange={() => dispatch(select(data))}
                 />
               </DataTableCell>
-              {headers.map(header => (
-                <DataTableCell key={header.key as string}>
-                  {row.hasOwnProperty(header.key) &&
-                    (header.render
-                      ? createElement(header.render, row)
-                      : row[header.key])}
+              {headers.filter(renderable).map(header => (
+                <DataTableCell
+                  header
+                  onClick={() => dispatch(sort(header.key))}
+                  className={classNames(sorted(header, state.sort))}
+                  key={header.key as string}
+                >
+                  {header.title}
                 </DataTableCell>
               ))}
             </DataTableRow>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {data.slice(offset, limit).map(row => (
+              <DataTableRow>
+                <DataTableCell>
+                  <Checkbox
+                    key="__selector"
+                    checked={state.selected.includes(row)}
+                    onChange={() => dispatch(select([row]))}
+                  />
+                </DataTableCell>
+                {headers.filter(renderable).map(header => (
+                  <DataTableCell key={header.key as string}>
+                    {row.hasOwnProperty(header.key) &&
+                      (header.render
+                        ? createElement(header.render, row)
+                        : row[header.key])}
+                  </DataTableCell>
+                ))}
+              </DataTableRow>
+            ))}
+          </tbody>
+        </table>
+      </div>
     );
   }
 );
