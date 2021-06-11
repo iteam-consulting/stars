@@ -1,0 +1,22 @@
+.avatar {
+  $sizes: (
+    'xs': 20px,
+    'sm': 24px,
+    'md': 30px,
+    'lg': 36px,
+    'xl': 42px,
+  );
+
+  object-fit: cover;
+  border-radius: 100%;
+  overflow: hidden;
+  height: map-get($map: $sizes, $key: 'md');
+  width: map-get($map: $sizes, $key: 'md');
+
+  @each $key, $value in $sizes {
+    &.#{$key} {
+      height: $value;
+      width: $value;
+    }
+  }
+}

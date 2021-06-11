@@ -5,7 +5,9 @@ export {
 
 export { default as AccordionProvider } from './Accordion/AccordionProvider';
 export { default as Accordion } from './Accordion/Accordion';
+export { default as Avatar } from './Avatar/Avatar';
 export { default as Button } from './Button/Button';
+export { default as Checkbox } from './Checkbox/Checkbox';
 export { default as Clickout } from './Popover/Popover';
 export { default as Layout } from './Layout/Layout';
 export { default as Main } from './Main/Main';
@@ -15,7 +17,9 @@ export { default as NavItem } from './Nav/NavItem';
 export { default as NavItemList } from './Nav/NavItemList';
 export { default as usePopover } from './Popover/usePopover';
 
+export type { AvatarProps } from './Avatar/Avatar';
 export type { ButtonProps } from './Button/Button';
+export type { CheckboxProps } from './Checkbox/Checkbox';
 export type { ClickoutProps } from './Clickout/Clickout';
 export type { LayoutProps } from './Layout/Layout';
 export type { MainProps } from './Main/Main';
